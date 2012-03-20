@@ -2,14 +2,16 @@ SRCS = \
        HelloChipmunk.cpp
 
 
-OBJS = $(SRCS:.m=.o)
+OBJS = $(SRCS:.cpp=.o)
 
 #####################################################################
 
-CC=gcc
-LD=gcc
+CC = g++
+CFLAGS = -ansi -I ~/src/Chipmunk-6.0.3/include
+LD = g++
+LDFLAGS = 
 
-PROG=hello_chipmunk
+PROG = hello_chipmunk
 
 # rule for everything
 .PHONY : all
