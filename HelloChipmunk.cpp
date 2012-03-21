@@ -1,10 +1,19 @@
 #include <iostream>
 #include <iomanip>
+#include <string>
 #include <chipmunk/chipmunk.h>
 #include <stdio.h>
 
-int main()
+int main(int argc, char* argv[])
 {
+   bool outputForPlotting = false;
+   if (argc > 1)
+   {
+      std::string arg1(argv[1]);
+      if (arg1 == "-p")
+         outputForPlotting = true;
+   }
+
    // cpVect is a 2D vector and cpv() is a shortcut for initializing
    // them.
    cpVect gravity = cpv(0, -100);
@@ -54,12 +63,20 @@ int main()
       cpVect pos = cpBodyGetPos(ballBody);
       cpVect vel = cpBodyGetVel(ballBody);
 
-      std::cout << std::fixed << std::setprecision(2);
-      std::cout << "Time is " << std::setw(5) << time 
-         << ". ballBody is at (" << std::setw(5) << pos.x 
-         << ", " << std::setw(5) << pos.y
-         << "). It's velocity is (" << std::setw(5) << vel.x
-         << ", " << std::setw(5) << vel.y << ")" << std::endl;
+      if (outputForPlotting)
+      {
+         std::cout << std::fixed << std::setprecision(2);
+         std::cout << std::setw(5) << pos.x << " " << std::setw(5) << pos.y << std::endl;
+      }
+      else
+      {
+         std::cout << std::fixed << std::setprecision(2);
+         std::cout << "Time is " << std::setw(5) << time 
+            << ". ballBody is at (" << std::setw(5) << pos.x 
+            << ", " << std::setw(5) << pos.y
+            << "). It's velocity is (" << std::setw(5) << vel.x
+            << ", " << std::setw(5) << vel.y << ")" << std::endl;
+      }
 
       cpSpaceStep(space, timeStep);
    }
