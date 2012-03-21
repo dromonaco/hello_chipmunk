@@ -53,13 +53,13 @@ int main()
    {
       cpVect pos = cpBodyGetPos(ballBody);
       cpVect vel = cpBodyGetVel(ballBody);
-      std::cout << "Time is " << std::setprecision(2) << std::setw(5) << time 
-         << ". ballBody is at (" << std::setprecision(2) << std::setw(5) << pos.x 
-         << ", "  << std::setprecision(2) << std::setw(5) << pos.y
-         << "). It's velocity is ("  << std::setprecision(2) << std::setw(5) << vel.x
-         << ", "  << std::setprecision(2) << std::setw(5) << vel.y << ")" << std::endl;
-      printf( "--Time is %5.2f.  ballBody is at (%5.2f, %5.2f).  It's velocity is (%5.2f, %5.2f)\n",
-              time, pos.x, pos.y, vel.x, vel.y);
+
+      std::cout << std::fixed << std::setprecision(2);
+      std::cout << "Time is " << std::setw(5) << time 
+         << ". ballBody is at (" << std::setw(5) << pos.x 
+         << ", " << std::setw(5) << pos.y
+         << "). It's velocity is (" << std::setw(5) << vel.x
+         << ", " << std::setw(5) << vel.y << ")" << std::endl;
 
       cpSpaceStep(space, timeStep);
    }
