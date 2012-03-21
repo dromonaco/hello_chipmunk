@@ -9,7 +9,7 @@ OBJS = $(SRCS:.cpp=.o)
 CC = g++
 CFLAGS = -ansi -I ~/src/Chipmunk-6.0.3/include
 LD = g++
-LDFLAGS = 
+LDFLAGS = -static -L ~/src/Chipmunk-6.0.3/src -lchipmunk
 
 PROG = hello_chipmunk
 
@@ -24,7 +24,7 @@ $(PROG): $(OBJS)
 %.o: %.cpp
 	$(CC) $(CFLAGS) -c -o $@ $<
 
-ifndef NODEPENDS
-   # include the dependency files
-   include $(SRCS:.cpp=.d)
-endif
+#ifndef NODEPENDS
+#   # include the dependency files
+#   include $(SRCS:.cpp=.d)
+#endif
