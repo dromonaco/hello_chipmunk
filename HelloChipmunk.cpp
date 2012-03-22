@@ -28,6 +28,7 @@ int main(int argc, char* argv[])
    cpShape *ground = cpSegmentShapeNew(space->staticBody, cpv(-20, 5), cpv(20, -5), 0);
    cpShapeSetFriction(ground, 1);
    cpSpaceAddShape(space, ground);
+   cpShapeSetElasticity(ground, 0.75);
 
    // Now let's make a ball that falls onto the line and rolls off.
    // First we need to make a cpBody to hold the physical properties
@@ -45,14 +46,15 @@ int main(int argc, char* argv[])
    // The cpSpaceAdd*() functions return the thing that you are
    // adding.  It's convenient to create and add an object in one
    // line.
-   cpBody *ballBody = cpSpaceAddBody(space, cpBodyNew(mass, moment));
+   cpBody *ballBody = cpSpaceAddBody(space, cpBodyNew(mass, INFINITY));
    cpBodySetPos(ballBody, cpv(0, 15));
 
    // Now we create the collision shape for the ball.  You can create
    // multiple collision shapes that point to the same body.  They
    // will all be attached to the body and move around to follow it.
    cpShape *ballShape = cpSpaceAddShape(space, cpCircleShapeNew(ballBody, radius, cpvzero));
-   cpShapeSetFriction(ballShape, 0.7);
+   //cpShapeSetFriction(ballShape, 0.1);
+   cpShapeSetElasticity(ballShape, 0.75);
 
    // Now that it's all set up, we simulate all the objects in the space by
    // stepping forward through time in small increments called steps.
