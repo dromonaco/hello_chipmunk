@@ -7,8 +7,8 @@ OBJS = $(SRCS:.cpp=.o)
 #####################################################################
 
 CC = g++
-CFLAGS = -ansi -I ~/src/Chipmunk-6.0.3/include
-STATICLIBS = ~/src/Chipmunk-6.0.3/src/libchipmunk.a
+CFLAGS = -ansi -I ~/src/Chipmunk-Physics/include
+STATICLIBS = ~/src/Chipmunk-Physics/src/libchipmunk.a
 SHAREDLIBS = 
 
 TARGET = hello_chipmunk
